@@ -67,6 +67,14 @@ def calculate_margins(peak_value, margin_percent):
     margin_ratio = margin_percent / 100
     return peak_value * (1 + margin_ratio), peak_value * (1 - margin_ratio)
 
+#%% alternative way to calculate the margins around peak position
+def calculate_margins_std(peak_value, std_dev, num_std=1):
+    margin_above = peak_value + (num_std * std_dev)
+    margin_below = peak_value - (num_std * std_dev)
+    return margin_above, margin_below
+
+
+
 #%% Plot KDE lines with margin
 def plot_kde_with_margin(kde_data, margin_above, margin_below, kde_bw, kde_color, grid_shape=(8, 5)):
     fig, axes = plt.subplots(*grid_shape, figsize=(18, 8), sharex=True)
